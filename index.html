@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beat the Goalie</title>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump Game</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Beat the Goalie</h1>
-        <div id="board">
-            <div id="goalie"></div>
-        </div>
-        <div id="message"></div>
-        <button id="resetBtn">Reset Game</button>
-    </div>
-    <script src="./js/apps.js"></script>
+  <div class="container">
+    <h1>Jump Game</h1>
+    <p>Click on the circles to gain points, but don't click too fast!</p>
+    <div class="game-area"></div>
+    <p>Score: <span id="score">0</span></p>
+    <p>Current Player: <span id="currentPlayer"></span></p> <!-- Add this line -->
+  </div>
+  <script src="./js/apps.js"></script>
 </body>
 </html>
