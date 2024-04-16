@@ -1,10 +1,10 @@
-/* Styles for the mario background */
+/* super mario background */
 .mario-underground-end {
     width: 100%;
     height: auto;
   }
   
-  /* Styles for the player character (Mario) */
+  /* for the player character (Mario) */
   .player1 {
     width: 50px; 
     height: auto; 
@@ -14,7 +14,7 @@
     transform: translateX(-50%);
   }
   
-  /* Styles for the green shell */
+  /* for the green shell */
   .green-shell {
     width: 30px; 
     height: auto; 
@@ -24,14 +24,14 @@
     transform: translateX(-50%);
   }
   
-  /* Styles for the game container */
+  /* for the game container */
   .game {
     position: relative;
     width: 100%;
     height: 200px; 
   }
   
-  /* Styles for the player character and block */
+  /* for the player character and block */
   #character,
   #block {
     width: 20px; 
@@ -41,7 +41,7 @@
     bottom: 0;
   }
   
-  /* Styles for the score display */
+  /* for the score display */
   p {
     position: absolute;
     top: 10px;
@@ -49,4 +49,67 @@
     margin: 0;
     font-size: 16px; 
     font-family: Arial, sans-serif;
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+  
+  .game {
+    width: 500px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+  }
+  
+  #character {
+    width: 20px;
+    height: 50px;
+    background-color: red;
+    position: relative;
+    top: 150px;
+  }
+  
+  .animate {
+    animation: jump 0.s linear;
+  }
+  
+  @keyframes jump {
+    0% {
+      top: 150px;
+    }
+    30% {
+      top: 100px;
+    }
+    70% {
+      top: 100px;
+    }
+    100% {
+      top: 150px;
+    }
+  }
+  
+  #block {
+    background-color: blue;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 130px;
+    left: 500px;
+    animation: block 2s infinite linear;
+  }
+  
+  @keyframes block {
+    0% {
+      left: 500px;
+    }
+    100% {
+      left: -20px;
+    }
+  }
+  
+  p {
+    text-align: center;
   }
