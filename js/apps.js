@@ -7,10 +7,20 @@ let marioCounter = 0;
 let shellCounter = 0;
 let checkDeadInterval; // variable to hold the interval for collision checking
 
-// Function for mario jump when the space bar is pressed
+// mario movements using arrow right & left
+function moveMarioHandler(event) {
+  if (event.key === 'ArrowLeft') {
+    moveMario('left');
+  } else if (event.key === 'ArrowRight') {
+    moveMario('right');
+  }
+}
+
+
+// for mario jump when the space bar is pressed
 function marioJump(event) {
     if (event.key === ' ' || event.key === 'Spacebar') {
-        console.log('Mario jumps...');
+        // console.log('Mario jumps...');
         if (mario.classList.contains('animate')) {
             return;
         }
