@@ -4,11 +4,11 @@
   height: auto;
 }
 
-/* for Mario (player1) character */
+/* for mario (player1) character */
 .mario {
   width: 50px;
   height: 50px;
-  background-image: url('images/SuperMarioBrothers8BitRetroBlack.webp');
+  background-image: url('../images/SuperMarioBrothers8BitRetroBlack.webp');
   background-size: contain;
   background-repeat: repeat;
   position: absolute;
@@ -21,13 +21,13 @@
 .shell {
   width: 30px; 
   height: 30px; 
-  background-image: url('images/super mario shell.png');
+  background-image: url('../images/super\ mario\ shell.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
   top: 70px;
-  left: 500px; /* Initial position */
-  animation: block 2s infinite linear; /* Animation */
+  left: 500px;
+  animation: block 2s infinite linear; /* animation */
 }
 
 .game {
@@ -45,11 +45,6 @@ p {
   font-family: Arial, sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-}
 
 .game {
   width: 500px;
