@@ -1,40 +1,25 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const character = document.getElementById("character");
-    const block = document.getElementById("block");
-    const scoreSpan = document.getElementById("scoreSpan");
-  
-    let counter = 0;
-  
-    // Function for player's jump when space bar is pressed
-    function jump() {
-      // console.log('Player jumps...');
-      if (character.classList.contains("animate")) {
-        return;
-      }
-      character.classList.add("animate");
-      setTimeout(() => {
-        character.classList.remove("animate");
-      }, 300);
+const mario = document.querySelector('.mario');
+const shell = document.querySelector('.shell');
+const scoreSpan = document.getElementById('scoreSpan');
+const winnerDisplay = document.getElementById('winner');
+
+let marioCounter = 0;
+let shellCounter = 0;
+let checkDeadInterval; // variable to hold the interval for collision checking
+
+// Function for mario jump when the space bar is pressed
+function marioJump(event) {
+    if (event.key === ' ' || event.key === 'Spacebar') {
+        console.log('Mario jumps...');
+        if (mario.classList.contains('animate')) {
+            return;
+        }
+        mario.classList.add('animate');
+        setTimeout(() => {
+            mario.classList.remove('animate');
+        }, 300);
+        marioCounter++;
+        scoreSpan.textContent = Math.floor(marioCounter / 100);
+        checkWinner();
     }
-  
-    // Add event listener for click event on the HTML document
-    document.documentElement.addEventListener('click', jump);
-  
-    // Check collision and score
-    const checkDead = setInterval(() => {
-      // console.log('Checking collision and score...');
-      const characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-      const blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-      if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
-        block.style.animation = "none";
-        alert("Game Over. Your score: " + Math.floor(counter / 100));
-        counter = 0;
-        block.style.animation = "block 2s infinite linear";
-      } else {
-        counter++;
-        scoreSpan.textContent = Math.floor(counter / 100);
-      }
-    }, 10);
-  });
-  
-  
+}
