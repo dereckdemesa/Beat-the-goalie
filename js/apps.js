@@ -35,7 +35,7 @@ function marioJump(event) {
     }
 }
 
-// Event listener for arrow key presses to move Mario
+// for arrow key presses to move Mario
 document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') {
       moveMario('left');
@@ -46,14 +46,14 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Get the canvas element and its context
+// canvas element
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Load the background image
+
 const backgroundImage = new Image();
 backgroundImage.onload = function() {
-    // Draw the background image onto the canvas
+    // draws background image into canvas element
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 };
 backgroundImage.src = './images/mario-underground-end.gif';
