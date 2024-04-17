@@ -3,8 +3,17 @@ const shell = document.querySelector('.shell');
 const scoreSpan = document.getElementById('scoreSpan');
 const winnerDisplay = document.getElementById('winner');
 
-let marioScore = 0;
-let shellScore = 0;
+// canvas element
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let marioX = 50;
+let marioY = canvas.height - 100;
+let shellX = canvas.width - 100;
+let shellY = canvas.height - 100;
+
+const marioImage = new Image();
+marioImage.src = './images/mario_png.png';
 
 // to move Mario
 function moveMario(direction) {
@@ -29,9 +38,6 @@ function marioJump(event) {
             mario.style.bottom = '0px';
             isJumping = false; // resets the jumping state after jump is complete
         }, 300);
-        marioScore += 10;
-        updateScore();
-        checkWinner();
     }
 }
 
@@ -45,11 +51,6 @@ document.addEventListener('keydown', (event) => {
       marioJump(event);
   }
 });
-
-// canvas element
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-
 
 const backgroundImage = new Image();
 backgroundImage.onload = function() {
