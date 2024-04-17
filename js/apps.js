@@ -26,11 +26,10 @@ function moveMarioHandler(event) {
   }
 }
 
-
 // for mario jump when the space bar is pressed
 function marioJump(event) {
     if (event.key === ' ' || event.key === 'Spacebar') {
-        console.log('Mario jumps...');
+        // console.log('Mario jumps.');
         if (mario.classList.contains('animate')) {
             return;
         }
@@ -42,7 +41,7 @@ function marioJump(event) {
         scoreSpan.textContent = Math.floor(marioCounter / 100);
         checkWinner();
     }
-}
+} 
 
 // Function to handle key presses for Mario's movement
 function moveMarioHandler(event) {
@@ -53,33 +52,21 @@ function moveMarioHandler(event) {
   }
 }
 
-// Function for Mario's jump when the space bar is pressed
-function marioJump(event) {
-  if (event.key === ' ' || event.key === 'Spacebar') {
-      console.log('Mario jumps...');
-      if (mario.classList.contains('animate')) {
-          return;
-      }
-      mario.classList.add('animate');
-      setTimeout(() => {
-          mario.classList.remove('animate');
-      }, 300);
-      marioCounter++;
-      scoreSpan.textContent = Math.floor(marioCounter / 100);
-      checkWinner();
-  }
-}
+  document.addEventListener('keydown', marioJump);
+  document.addEventListener('keydown', moveMarioHandler);
 
-// Function for Shell's jump at intervals
-function shellJump() {
-  console.log('Shell jumps...');
-  if (shell.classList.contains('animate')) {
-      return;
+  function checkWinner() {
+    console.log('checking winner')
+    if(marioCounter >= 1000) {
+      declareWinner('Mario');
+    } else if (shellCounter >= 1000) {
+      declareWinner('Shell');
+    }
   }
-  shell.classList.add('animate');
-  setTimeout(() => {
-      shell.classList.remove('animate');
-  }, 300);
-  shellCounter++;
-}
 
+  function declareWinner() {
+    winnerDisplay.textContent = 'Winner ${winner}';
+    clearInterval(checkDeadInterval);
+    document.removeEventListener('keydown', marioJump);
+    document.removeEventListener('keydown', moveMarioHandler);
+  }
