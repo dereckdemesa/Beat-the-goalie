@@ -8,7 +8,7 @@
 .mario {
   width: 50px;
   height: 50px;
-  background-image: url('../images/SuperMarioBrothers8BitRetroBlack.webp');
+  background-image: url('../images/mario_png.png');
   background-size: contain;
   background-repeat: repeat;
   position: absolute;
@@ -21,7 +21,7 @@
 .shell {
   width: 30px; 
   height: 30px; 
-  background-image: url('../images/super\ mario\ shell.png');
+  background-image: url('../images/koopa_shell.png');
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
