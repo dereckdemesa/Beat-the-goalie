@@ -1,5 +1,3 @@
-const mario = document.querySelector('.mario');
-const shell = document.querySelector('.shell');
 const scoreSpan = document.getElementById('scoreSpan');
 const winnerDisplay = document.getElementById('winner');
 
@@ -8,34 +6,30 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 let marioX = 50;
-let marioY = canvas.height - 100;
+let marioY = canvas.height - 70;
 let shellX = canvas.width - 100;
-let shellY = canvas.height - 100;
-
-const marioImage = new Image();
-marioImage.src = './images/mario_png.png';
+let shellY = canvas.height - 70;
 
 // to move Mario
 function moveMario(direction) {
-  const marioLeft = parseInt(window.getComputedStyle(mario).getPropertyValue('left'));
-  const step = 10;
-  if (direction === 'left') {
-      mario.style.left = `${marioLeft - step}px`;
-  } else if (direction === 'right') {
-      mario.style.left = `${marioLeft + step}px`;
-  }
+    const step = 10;
+    if (direction === 'left' && marioX > 0) {
+        marioX -= step;
+    } else if (direction === 'right' && marioX < canvas.width - 50) {
+        marioX += step;
+    }
 }
 
 // to make Mario jump
 let isJumping = false; // Add this variable to track Mario's jumping state
 
-function marioJump(event) {
+function marioJump() {
     const jumpHeight = 50;
-    if (event.key === 'ArrowUp' && !isJumping) {
+    if (!isJumping) {
         isJumping = true;
-        mario.style.bottom = `${jumpHeight}px`;
+        marioY -= jumpHeight; // Move Mario up by jumpHeight
         setTimeout(() => {
-            mario.style.bottom = '0px';
+            marioY += jumpHeight; // Move Mario back down after a delay
             isJumping = false; // resets the jumping state after jump is complete
         }, 300);
     }
@@ -43,13 +37,13 @@ function marioJump(event) {
 
 // for arrow key presses to move Mario
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowLeft') {
-      moveMario('left');
-  } else if (event.key === 'ArrowRight') {
-      moveMario('right');
-  } else if (event.key === 'ArrowUp') {
-      marioJump(event);
-  }
+    if (event.key === 'ArrowLeft') {
+        moveMario('left');
+    } else if (event.key === 'ArrowRight') {
+        moveMario('right');
+    } else if (event.key === 'ArrowUp') {
+        marioJump();
+    }
 });
 
 const backgroundImage = new Image();
@@ -57,4 +51,22 @@ backgroundImage.onload = function() {
     // draws background image into canvas element
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 };
+
 backgroundImage.src = './images/mario-underground-end.gif';
+
+// Load Mario image
+const marioImage = new Image();
+marioImage.onload = function() {
+    // Draw Mario image onto the canvas
+    ctx.drawImage(marioImage, marioX, marioY, 50, 70); // Adjusted coordinates to fit Mario within canvas
+};
+marioImage.src = './images/mario_png.png'; // Replace 'path_to_mario_image.png' with the path to your Mario image
+
+// Load shell image
+const shellImage = new Image();
+shellImage.onload = function() {
+    // Draw shell image onto the canvas
+    ctx.drawImage(shellImage, shellX, shellY, 30, 30); // Adjusted coordinates to fit the shell within canvas
+};
+shellImage.src = './images/koopa_shell.png'; // Replace 'path_to_shell_image.png' with the path to your shell image
+
