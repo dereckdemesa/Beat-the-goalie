@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let score = 0; // Initialize score
 
   function moveShell() {
-      const shellSpeed = 8; // Adjust the speed of the shell
+      const shellSpeed = 30; // Adjust the speed of the shell
       shellX -= shellSpeed; // moves the shell horizontally
       if (shellX < -30) {
           shellX = canvas.width;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => {
               marioY += jumpHeight;
               isJumping = false;
-              score++; // Increment score when Mario successfully jumps over the shell
+              score++; // score goes up when Mario successfully jumps over the shell
               scoreSpan.textContent = score; // Update scoreboard
           }, 300);
       }
@@ -104,6 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
       score = 0;
       scoreSpan.textContent = score; // Reset scoreboard
       isGameOver = false;
+      gameLoop = setInterval(() => {
+        if (!isGameOver) {
+          moveShell();
+          checkCollision();
+          redrawCanvas();
+        }
+      }, 100);
   }
 
   // Check for collision between Mario and shell
