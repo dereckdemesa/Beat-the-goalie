@@ -11,6 +11,15 @@ let checkDeadInterval; // for collision
 
 function marioJump(event) {
   if (event.key === ' ' || event.key === 'Spacebar') {
-      console.log('Mario jumps');
+      // console.log('Mario jumps');
+      if (mario.classList.contains('animate')) {
+        mario.classList.add('animate');
+        setInterval(() => {
+          mario.classList.remove('animate');
+        }, 300);
+        marioScore += 10;
+        updateScore();
+        checkWinner();
+      }
   }
 }
