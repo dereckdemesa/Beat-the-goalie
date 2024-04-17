@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to display notifications
+  function displayNotification(message) {
+      const notificationElement = document.getElementById('notification');
+      notificationElement.textContent = message;
+  }
+
 const scoreSpan = document.getElementById('scoreSpan');
 const winnerDisplay = document.getElementById('winner');
 // canvas element
@@ -68,13 +75,14 @@ document.addEventListener('keydown', (event) => {
 
 const backgroundImage = new Image();
 backgroundImage.onload = function() {
+  // console.log('background image loaded')
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 };
 backgroundImage.src = './images/mario-underground-end.gif';
 
 const marioImage = new Image();
 marioImage.onload = function() {
-  // console.log('mario image')
+ // console.log('Mario image loaded');
   ctx.drawImage(marioImage, marioX, marioY, 50, 70); 
 };
 marioImage.src = './images/mario_png.png'; 
@@ -82,7 +90,7 @@ marioImage.src = './images/mario_png.png';
 
 const shellImage = new Image();
 shellImage.onload = function() {
-    
+  // console.log('Shell image loaded');
     ctx.drawImage(shellImage, shellX, shellY, 30, 30); 
 };
 shellImage.src = './images/koopa_shell.png'; 
@@ -105,7 +113,10 @@ function checkCollision() {
     marioBox.y < shellBox.y + shellBox.height &&
     marioBox.y + marioBox.height > shellBox.y
   ) {
+    // console.log('collision detected')
     resetGame();
+  } else if (marioX > shellX + 30) {
+    score++;
   }
 }
 
@@ -125,4 +136,6 @@ let gameLoop = setInterval(() => {
     checkWinConditions();
     redrawCanvas();
   }
-}, 100); // Adjust the interval as needed
+}, 100); 
+
+});
