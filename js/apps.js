@@ -21,16 +21,16 @@ function moveMario(direction) {
 }
 
 // to make Mario jump
-let isJumping = false; // Add this variable to track Mario's jumping state
+let isJumping = false; 
 
 function marioJump() {
     const jumpHeight = 50;
     if (!isJumping) {
         isJumping = true;
-        marioY -= jumpHeight; // Move Mario up by jumpHeight
+        marioY -= jumpHeight; 
         setTimeout(() => {
-            marioY += jumpHeight; // Move Mario back down after a delay
-            isJumping = false; // resets the jumping state after jump is complete
+            marioY += jumpHeight; 
+            isJumping = false; 
         }, 300);
     }
 }
@@ -48,25 +48,25 @@ document.addEventListener('keydown', (event) => {
 
 const backgroundImage = new Image();
 backgroundImage.onload = function() {
-    // draws background image into canvas element
+    
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 };
 
 backgroundImage.src = './images/mario-underground-end.gif';
 
-// Load Mario image
+
 const marioImage = new Image();
 marioImage.onload = function() {
-    // Draw Mario image onto the canvas
-    ctx.drawImage(marioImage, marioX, marioY, 50, 70); // Adjusted coordinates to fit Mario within canvas
+   
+    ctx.drawImage(marioImage, marioX, marioY, 50, 70); 
 };
-marioImage.src = './images/mario_png.png'; // Replace 'path_to_mario_image.png' with the path to your Mario image
+marioImage.src = './images/mario_png.png'; 
 
-// Load shell image
+
 const shellImage = new Image();
 shellImage.onload = function() {
     // Draw shell image onto the canvas
-    ctx.drawImage(shellImage, shellX, shellY, 30, 30); // Adjusted coordinates to fit the shell within canvas
+    ctx.drawImage(shellImage, shellX, shellY, 30, 30); 
 };
-shellImage.src = './images/koopa_shell.png'; // Replace 'path_to_shell_image.png' with the path to your shell image
+shellImage.src = './images/koopa_shell.png'; 
 
