@@ -5,21 +5,43 @@ const winnerDisplay = document.getElementById('winner');
 
 let marioScore = 0;
 let shellScore = 0;
-let marioCounter = 0;
-let shellCounter = 0;
-let checkDeadInterval; // for collision
+
+// to move Mario
+function moveMario(direction) {
+  const marioLeft = parseInt(window.getComputedStyle(mario).getPropertyValue('left'));
+  const step = 10;
+  if (direction === 'left') {
+      mario.style.left = `${marioLeft - step}px`;
+  } else if (direction === 'right') {
+      mario.style.left = `${marioLeft + step}px`;
+  }
+}
+
+// to make Mario jump
+let isJumping = false; // Add this variable to track Mario's jumping state
 
 function marioJump(event) {
-  if (event.key === ' ' || event.key === 'Spacebar') {
-      // console.log('Mario jumps');
-      if (mario.classList.contains('animate')) {
-        mario.classList.add('animate');
-        setInterval(() => {
-          mario.classList.remove('animate');
+    const jumpHeight = 50;
+    if (event.key === 'ArrowUp' && !isJumping) {
+        isJumping = true;
+        mario.style.bottom = `${jumpHeight}px`;
+        setTimeout(() => {
+            mario.style.bottom = '0px';
+            isJumping = false; // resets the jumping state after jump is complete
         }, 300);
         marioScore += 10;
         updateScore();
         checkWinner();
-      }
-  }
+    }
 }
+
+// Event listener for arrow key presses to move Mario
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
+      moveMario('left');
+  } else if (event.key === 'ArrowRight') {
+      moveMario('right');
+  } else if (event.key === 'ArrowUp') {
+      marioJump(event);
+  }
+});
