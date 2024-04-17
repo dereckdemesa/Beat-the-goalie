@@ -7,6 +7,9 @@ let marioCounter = 0;
 let shellCounter = 0;
 let checkDeadInterval; // variable to hold the interval for collision checking
 
+document.addEventListener('keydown', marioJump);
+document.addEventListener('keydown', moveMarioHandler);
+
 // mario movements using arrow right & left
 function moveMario(direction) {
   const marioLeft = parseInt(window.getComputedStyle(mario).getPropertyValue('left'));
@@ -26,14 +29,13 @@ function moveMarioHandler(event) {
   }
 }
 
-// for mario jump when the space bar is pressed
+// for mario jump when the 'up' arrow key is pressed
 function marioJump(event) {
-    if (event.key === ' ' || event.key === 'Spacebar') {
-        // console.log('Mario jumps.');
-        if (mario.classList.contains('animate')) {
-            return;
-        }
-        mario.classList.add('animate');
+    if (event.key === 'ArrowUp') {
+      if (mario.classList.contain('animate')) {
+        return;
+      }
+      mario.classList.add('animate');
         setTimeout(() => {
             mario.classList.remove('animate');
         }, 300);
@@ -41,7 +43,8 @@ function marioJump(event) {
         scoreSpan.textContent = Math.floor(marioCounter / 100);
         checkWinner();
     }
-} 
+}
+ 
 
 // Function to handle key presses for Mario's movement
 function moveMarioHandler(event) {
@@ -52,11 +55,8 @@ function moveMarioHandler(event) {
   }
 }
 
-  document.addEventListener('keydown', marioJump);
-  document.addEventListener('keydown', moveMarioHandler);
-
-  function checkWinner() {
-    console.log('checking winner')
+   function checkWinner() {
+    // console.log('checking winner')
     if(marioCounter >= 1000) {
       declareWinner('Mario');
     } else if (shellCounter >= 1000) {
