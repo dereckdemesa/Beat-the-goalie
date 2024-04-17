@@ -45,3 +45,15 @@ document.addEventListener('keydown', (event) => {
       marioJump(event);
   }
 });
+
+// Get the canvas element and its context
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Load the background image
+const backgroundImage = new Image();
+backgroundImage.onload = function() {
+    // Draw the background image onto the canvas
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+};
+backgroundImage.src = './images/mario-underground-end.gif';

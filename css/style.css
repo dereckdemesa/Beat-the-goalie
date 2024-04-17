@@ -1,9 +1,3 @@
-/* super mario background */
-.mario-underground-end {
-  width: 100%;
-  height: auto;
-}
-
 /* for mario (player1) character */
 .mario {
   width: 50px;
@@ -45,16 +39,17 @@ p {
   font-family: Arial, sans-serif;
 }
 
-
-.game {
-  width: 500px;
-  height: 200px;
-  border: 1px solid black;
-  margin: auto;
+/* Styles for the game canvas */
+#gameCanvas {
+  display: block;
+  margin: 0 auto; /* Center the canvas horizontally */
+  border: 2px solid #333; /* Add a border */
+  background-color: #f0f0f0; /* Set a background color */
 }
 
+/* Animation for player jump */
 .animate {
-  animation: jump 0.s linear;
+  animation: jump 0.5s linear;
 }
 
 @keyframes jump {
@@ -72,6 +67,7 @@ p {
   }
 }
 
+/* Animation for moving shell */
 @keyframes block {
   0% {
       left: 500px;
