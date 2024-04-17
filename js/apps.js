@@ -1,6 +1,5 @@
 const scoreSpan = document.getElementById('scoreSpan');
 const winnerDisplay = document.getElementById('winner');
-
 // canvas element
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -10,6 +9,7 @@ let marioY = canvas.height - 108;
 let shellX = canvas.width - 100;
 let shellY = canvas.height - 70;
 let isJumping = false;
+let isGameOver = false;
 
 function moveShell() {
   const shellSpeed = 8; // aadjust the speed of the shell
@@ -21,7 +21,6 @@ function moveShell() {
 }
 // Set interval to move the shell periodically
 setInterval(moveShell, 50); 
-
 
 // to move Mario
 function moveMario(event) {
@@ -88,3 +87,42 @@ shellImage.onload = function() {
 };
 shellImage.src = './images/koopa_shell.png'; 
 
+
+function resetGame() {
+  clearInterval(moveShell);
+  isGameOver = true;
+  displayNotification('You lose');
+}
+
+// Check for collision between Mario and shell
+function checkCollision() {
+  const marioBox = {x: marioX, y: marioY, width: 50, height: 70};
+  const shellBox = { x: shellX, y: shellY, width: 30, height: 30 };
+
+  if (
+    marioBox.x < shellBox.x + shellBox.width &&
+    marioBox.x + marioBox.width > shellBox.x &&
+    marioBox.y < shellBox.y + shellBox.height &&
+    marioBox.y + marioBox.height > shellBox.y
+  ) {
+    resetGame();
+  }
+}
+
+// Function to check for winning conditions
+function checkWinConditions() {
+  if (marioX >= canvas.width - 50) {
+    clearInterval(gameLoop);
+    displayNotification('You win!');
+  }
+}
+
+// Game loop to continuously update game state
+let gameLoop = setInterval(() => {
+  if (!isGameOver) {
+    moveShell();
+    checkCollision()
+    checkWinConditions();
+    redrawCanvas();
+  }
+}, 100); // Adjust the interval as needed

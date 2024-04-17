@@ -1,51 +1,54 @@
-.mario {
-  width: 50px;
-  height: 70px; 
-  position: absolute;
-  bottom: 20px; 
-  left: 50px; 
-  background-image: url('../images/mario_png.png');
-  background-size: contain;
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.canvas-container {
+  position: relative; /* Add this line */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  background-color: #fff;
 }
 
 
-.shell {
+/* Game canvas */
+#gameCanvas {
+  border: 2px solid #000;
+  background-color: #fff;
+  position: relative;
+}
+
+/* Mario */
+#marioImage {
+  width: 50px;
+  height: 70px;
+  position: absolute;
+}
+
+/* Shell */
+#shellImage {
   width: 30px;
   height: 30px;
   position: absolute;
-  bottom: 20px; 
-  right: 50px; 
-  background-image: url('../images/koopa_shell.png');
-  background-size: contain;
 }
 
-/* style for the game canvas */
-#gameCanvas {
-  display: block;
-  margin: 0 auto; 
-  border: 2px solid #333; 
-  background-color: #f0f0f0; 
-  position: relative; 
-  width: 100%; 
-  height: 300px; 
+/* Notification */
+#notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 24px;
+  display: none;
 }
 
-/* animation for player jump */
-.animate {
-  animation: jump 0.5s linear;
-}
-
-@keyframes jump {
-  0% {
-    bottom: 0;
-  }
-  30% {
-    bottom: 100px;
-  }
-  70% {
-    bottom: 100px;
-  }
-  100% {
-    bottom: 0;
-  }
-}
