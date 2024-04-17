@@ -6,11 +6,10 @@
 
 /* for mario (player1) character */
 .mario {
-  width: 50px;
+  width: 5vw;
   height: 50px;
   background-image: url('../images/SuperMarioBrothers8BitRetroBlack.webp');
-  background-size: contain;
-  background-repeat: repeat;
+  background-size: cover;
   position: absolute;
   bottom: 250px;
   left: 100px; 
@@ -19,7 +18,7 @@
 
 /* green shell */
 .shell {
-  width: 30px; 
+  width: 5vw; 
   height: 30px; 
   background-image: url('../images/super\ mario\ shell.png');
   background-size: contain;
