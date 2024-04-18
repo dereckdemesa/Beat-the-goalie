@@ -127,8 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
           resetGame();
       }
   }
-
-  // Game loop to continuously update game state
+// Game loop to continuously update game state
   let gameLoop = setInterval(() => {
       if (!isGameOver) {
           moveShell();

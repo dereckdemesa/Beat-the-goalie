@@ -1,6 +1,6 @@
 # Jump
 
-Jump Game is a simple browser-based game where the player controls a character to jump over obstacles.
+The Jump Game is a web-based arcade game where the arrow keys guide Mario to leap over incoming shells and rack up points. It offers a nostalgic gaming experience with simple controls and a challenging gameplay loop.
 
 ![Jump Game](./images/Image%204-17-24%20at%205.16%20PM.jpg)
 
@@ -10,8 +10,7 @@ Jump Game is a simple browser-based game where the player controls a character t
 - [How to Play](#how-to-play)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -24,8 +23,38 @@ Jump Game is a simple browser-based game where the player controls a character t
 
 1. Use the left and right arrow keys to move the character.
 2. Press the up arrow key to make the character jump.
-3. Avoid colliding with obstacles.
+3. Avoid colliding with incoming green shell.
 4. Try to achieve the highest score possible by jumping over obstacles.
+
+``js 
+ // to move Mario
+  function moveMario(event) {
+      const step = 10;
+      if (event.key === 'ArrowLeft' && marioX > 0) {
+          marioX -= step;
+      } else if (event.key === 'ArrowRight' && marioX < canvas.width - 50) {
+          marioX += step;
+      }
+      redrawCanvas();
+  }
+  document.addEventListener('keydown', moveMario);
+
+  // to make Mario jump
+  function marioJump() {
+      const jumpHeight = 50;
+      if (!isJumping) {
+          isJumping = true;
+          marioY -= jumpHeight;
+          redrawCanvas();
+          setTimeout(() => {
+              marioY += jumpHeight;
+              isJumping = false;
+              score++; // score goes up when Mario successfully jumps over the shell
+              scoreSpan.textContent = score; // Update scoreboard
+          }, 300);
+      }
+  }
+  ``
 
 
 
@@ -40,5 +69,3 @@ Use the arrow keys to control the character.
 Jump over obstacles to increase your score.
 Avoid colliding with obstacles to prevent game over.
 
-Contributing:
-Contributions are welcome! If you find any bugs or have suggestions for improvement, please open an issue or create a pull request.
