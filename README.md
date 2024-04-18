@@ -26,36 +26,7 @@ The Jump Game is a web-based arcade game where the arrow keys guide Mario to lea
 3. Avoid colliding with incoming green shell.
 4. Try to achieve the highest score possible by jumping over obstacles.
 
-``js 
- // to move Mario
-  function moveMario(event) {
-      const step = 10;
-      if (event.key === 'ArrowLeft' && marioX > 0) {
-          marioX -= step;
-      } else if (event.key === 'ArrowRight' && marioX < canvas.width - 50) {
-          marioX += step;
-      }
-      redrawCanvas();
-  }
-  document.addEventListener('keydown', moveMario);
-
-  // to make Mario jump
-  function marioJump() {
-      const jumpHeight = 50;
-      if (!isJumping) {
-          isJumping = true;
-          marioY -= jumpHeight;
-          redrawCanvas();
-          setTimeout(() => {
-              marioY += jumpHeight;
-              isJumping = false;
-              score++; // score goes up when Mario successfully jumps over the shell
-              scoreSpan.textContent = score; // Update scoreboard
-          }, 300);
-      }
-  }
-  ``
-
+![JumpGame](./images/Image%204-17-24%20at%207.45%20PM.jpg)
 
 
 1. Clone the repository:
